@@ -71,10 +71,11 @@ class Consumer implements Runnable {
 
 class Buffer {
 
-    private List<Integer> list = new ArrayList<>(5);
+    private final List<Integer> list = new ArrayList<>(5);
     private int MAX_SIZE = 5;
 
     int get() {
+        //Sequential access on this list object
         synchronized (list) {
             if(list.isEmpty()) {
                 try {
@@ -84,12 +85,14 @@ class Buffer {
                     e.printStackTrace();
                 }
             }
+            //Notify any thread, producer, if it was waiting for the consumer to act
             list.notify();
             return list.remove(list.size()-1);
         }
     }
 
     void add(int n) {
+        //Sequential access on this list object
         synchronized (list) {
             if(list.size() >= MAX_SIZE) {
                 try {
@@ -99,6 +102,7 @@ class Buffer {
                     e.printStackTrace();
                 }
             }
+            //Notify any thread, consumer, if it was waiting for the producer to add
             list.notify();
             list.add(n);
         }
