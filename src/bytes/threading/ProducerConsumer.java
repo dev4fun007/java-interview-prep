@@ -74,30 +74,34 @@ class Buffer {
     private List<Integer> list = new ArrayList<>(5);
     private int MAX_SIZE = 5;
 
-    synchronized int get() {
-        if(list.isEmpty()) {
-            try {
-                System.out.println("List is empty, waiting on producer");
-                wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+    int get() {
+        synchronized (list) {
+            if(list.isEmpty()) {
+                try {
+                    System.out.println("List is empty, waiting on producer");
+                    list.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
+            list.notify();
+            return list.remove(list.size()-1);
         }
-        notify();
-        return list.remove(list.size()-1);
     }
 
-    synchronized void add(int n) {
-        if(list.size() >= MAX_SIZE) {
-            try {
-                System.out.println("List is full, waiting on consumer");
-                wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+    void add(int n) {
+        synchronized (list) {
+            if(list.size() >= MAX_SIZE) {
+                try {
+                    System.out.println("List is full, waiting on consumer");
+                    list.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
+            list.notify();
+            list.add(n);
         }
-        notify();
-        list.add(n);
     }
 
 }
