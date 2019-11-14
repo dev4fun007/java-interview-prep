@@ -1,0 +1,14 @@
+1 Threads inherit their parent's "daemon" property
+2 JVM shutdown abandons daemon threads
+3 Garbage collection (GC) thread is an example of daemon thread
+4 object.wait() or object.wait(1000) - overloaded method - wait releases lock on the object - should be called in synchronized method or block
+5 One will try to concurrently access an object thus lock is required on an object - wait, notify & notifyAll belongs to object class and not thread class
+6 notify() - randomly wakes one thread
+7 notifyAll() - wakes all thread - move them to runnable state - one will get scheduled
+8 synchronized blocks are preferred over synchronized method - call to one method blocks calls to other sync methods as well, so better use sync blocks
+9 AtomicInteger - uses volatile int behind the scene - to increment and decrement - uses Compare & Swap technique - will update only if the old value was not updated
+10 Lock free data structures and algorithm - https://en.wikipedia.org/wiki/Non-blocking_algorithm
+11 Green threads are user level threads, while normal thread is a kernel level thread
+12 Green threads less overhead - but os cannot schedule them efficiently - a process with 100 user threads will get its own time slice comparable to other process, not more.
+13 Kernel threads better scheduling but too much overhead - os requires full thread control block information
+14
