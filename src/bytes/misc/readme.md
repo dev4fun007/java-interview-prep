@@ -1,3 +1,6 @@
 - Immutable classes, every modification of a state results in a new instance, thus concurrent threads can modify without using any synchronized block
 - Immutable classes helps in writing more performable code in concurrent environment
 - They are more suitable to be used as a key in HashMaps
+- Implementing Cloneable(a marker interface) interface and clone() method does a shallow copy only by default
+- To make a deep clone - each object's clone() method must be called and a new object must be constructed
+- Deep copy of an object can be done using serialization - slow performance - all the nested objects must be serializable
