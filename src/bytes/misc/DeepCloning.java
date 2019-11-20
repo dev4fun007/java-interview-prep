@@ -33,6 +33,7 @@ class Name implements Cloneable {
     @Override
     protected Object clone() {
         try {
+            //This is shallow cloning
             return super.clone();
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
@@ -52,6 +53,7 @@ class NameDeepClone implements Cloneable {
 
     @Override
     protected Object clone() {
+        //This is deep cloning - cloning each individual object fields
         NameDeepClone clone = null;
         try {
             clone = (NameDeepClone) super.clone();
