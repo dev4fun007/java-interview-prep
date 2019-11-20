@@ -13,3 +13,10 @@
 - An iterator with support for parallel iteration
 - Use splitIterator.trySplit() (returns null if split not possible) method to split the collection based on Sorting, randomness etc 
 - Can be used for sequential iteration as well
+
+###Concurrent Collections
+CopyOnWriteArrayList<E>
+- Used as a thread-safe variant of ArrayList
+- Creates a copy of underlying array when an iterator is instantiated
+- Gives better performance than a synchronized ArrayList - when traversal operation is >> mutation operation
+- Will not reflect addition, removal or changes made after the iterator was instantiated

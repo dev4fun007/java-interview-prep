@@ -1,0 +1,3 @@
+- Immutable classes, every modification of a state results in a new instance, thus concurrent threads can modify without using any synchronized block
+- Immutable classes helps in writing more performable code in concurrent environment
+- They are more suitable to be used as a key in HashMaps
